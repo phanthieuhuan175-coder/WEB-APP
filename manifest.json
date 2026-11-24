@@ -1,0 +1,30 @@
+{
+  "name": "Thu Sông — Công Cụ Lâm Sàng",
+  "short_name": "Công Cụ Y Khoa",
+  "description": "Bộ công cụ tính liều thuốc, bù điện giải và tính ngày hẹn tối ưu cho điện thoại.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F6F2EA",
+  "theme_color": "#245968",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

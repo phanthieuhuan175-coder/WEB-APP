@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#245968"/>
+      <stop offset="58%" stop-color="#327484"/>
+      <stop offset="100%" stop-color="#B86640"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF4E4"/>
+      <stop offset="55%" stop-color="#F2B872"/>
+      <stop offset="100%" stop-color="#D97343"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  <!-- Soft river waves at bottom -->
+  <path d="M0 370 Q128 330 256 370 T512 370 L512 512 L0 512 Z" fill="#1D4B58" opacity="0.55"/>
+  <path d="M0 412 Q128 380 256 412 T512 412 L512 512 L0 512 Z" fill="#173D48" opacity="0.65"/>
+  <path d="M40 392 Q148 364 256 392 T472 392" fill="none" stroke="#CFE7EC" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+  <!-- Stylized Maple Leaf -->
+  <path fill="url(#leafGrad)" stroke="#FFF9F0" stroke-width="6" stroke-linejoin="round"
+        d="M256 76
+           L278 134 L306 121 L292 204 L344 170 L334 208 L378 198 L364 236 L392 246
+           L328 302 L338 330 L264 322 L264 374 L248 374 L248 322 L174 330 L184 302 L120 246
+           L148 236 L134 198 L178 208 L168 170 L220 204 L206 121 L234 134 Z"/>
+</svg>

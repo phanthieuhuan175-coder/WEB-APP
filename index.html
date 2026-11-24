@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#245968" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Công Cụ Lâm Sàng</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg" />
+  <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Header phong cách Thu & Sông xanh -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="brand-wrap">
+          <div class="brand-icon" aria-hidden="true">
+            <svg viewBox="0 0 100 100" width="24" height="24">
+              <path fill="#FFEBD2" d="M50 8 L57 25 L65 21 L61 44 L76 34 L73 45 L86 42 L82 53 L90 56 L71 72 L74 80 L52 78 L52 94 L48 94 L48 78 L26 80 L29 72 L10 56 L18 53 L14 42 L27 45 L24 34 L39 44 L35 21 L43 25 Z"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1 id="header-title">Công Cụ Lâm Sàng</h1>
+            <p id="header-subtitle">Chạm mục bên dưới để chuyển nhanh</p>
+          </div>
+        </div>
+        <button id="btn-refresh" class="icon-btn" type="button" title="Tải bản cập nhật mới nhất" aria-label="Cập nhật">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a9 9 0 1 1-2.64-6.36"/>
+            <polyline points="21 3 21 9 15 9"/>
+          </svg>
+        </button>
+      </div>
+      <!-- Đường sóng sông mềm mại -->
+      <svg class="header-wave" viewBox="0 0 1440 54" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,26 C240,56 480,0 720,26 C960,52 1200,8 1440,28 L1440,54 L0,54 Z" fill="#F6F2EA"></path>
+      </svg>
+    </header>
+
+    <!-- Vùng hiển thị nội dung các mục -->
+    <main id="tool-stage" class="tool-stage"></main>
+
+    <!-- Thanh điều hướng dưới cùng (tự sinh từ tools/registry.js) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Danh sách công cụ"></nav>
+  </div>
+
+  <!-- Thông báo nổi ngắn (Toast) -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
