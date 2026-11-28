@@ -1,4 +1,4 @@
-const CACHE_NAME = 'his-tools-pwa-v1';
+const CACHE_NAME = 'his-tools-pwa-v2';
 
 const CORE_ASSETS = [
   './',
@@ -12,7 +12,8 @@ const CORE_ASSETS = [
   './tools/registry.js',
   './tools/lieu-thuoc.js',
   './tools/bu-dien-giai.js',
-  './tools/tinh-ngay.js'
+  './tools/tinh-ngay.js',
+  './tools/nhac-viec.js'
 ];
 
 self.addEventListener('install', (event) => {
@@ -33,11 +34,12 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Chiến lược Network-First:
-// Có mạng -> luôn ưu tiên tải code mới nhất từ server rồi cập nhật cache.
-// Mất mạng -> tự động mở bản lưu offline trong máy.
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+
+  // Không cache API bên ngoài (như api.github.com) để tránh trả về dữ liệu cũ
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) return;
 
   event.respondWith(
     fetch(event.request)
