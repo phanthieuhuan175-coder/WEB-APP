@@ -50,7 +50,7 @@ const DRUGS_CONFIG = [
         unit: 'UI',
         maxDose: null,
         freqText: 'x 2 lần/ngày',
-        note: 'hòa NaCl 0.9% truyền 60p cách 12h'
+        note: 'hòa NaCl 0.9% truyền 60p cách 12h có thể nâng lên 100.000 IU/kg'
       }
     ]
   },
@@ -131,14 +131,30 @@ const DRUGS_CONFIG = [
     name: 'Amphot',
     packaging: '50mg/lọ',
     doses: [
-      {
-        label: 'liều',
-        dosePerKg: 1,
-        unit: 'mg',
-        maxDose: null,
-        freqText: 'x 1 lần/ngày',
-        note: 'hòa dung dịch glucose 5% đủ 200ml truyền tĩnh mạch 50ml/h'
-      }
+                 {
+                    label: 'liều ban đầu',
+                    dosePerKg: 0.5,
+                    unit: 'mg',
+                    maxDose: null,
+                    freqText: 'x 1 lần/ngày',
+                    note: 'hòa dung dịch glucose 5% đủ tỷ lệ 1mg:10ml  truyền tĩnh mạch 10h'
+                },
+                {
+                    label: 'liều nâng dần',
+                    dosePerKg: 0.75,
+                    unit: 'mg',
+                    maxDose: null,
+                    freqText: 'x 1 lần/ngày',
+                    note: 'hòa dung dịch glucose 5% đủ tỷ lệ 1mg:10ml  truyền tĩnh mạch 10h'
+                },
+                {
+                    label: 'liều các lần sau',
+                    dosePerKg: 1,
+                    unit: 'mg',
+                    maxDose: null,
+                    freqText: 'x 1 lần/ngày',
+                    note: 'hòa dung dịch glucose 5% đủ tỷ lệ 1mg:10ml  truyền tĩnh mạch 10h'
+                }
     ]
   },
   {
