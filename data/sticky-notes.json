@@ -1,0 +1,95 @@
+{
+  "version": 2,
+  "updatedAt": 1795858182769,
+  "notes": [
+    {
+      "id": "sn_1795657682763_xqz6e",
+      "text": "2khánh mi 3 thái hà",
+      "patient": "NGUYỄN NGỌC TỐ NHƯ (VS2610951403)",
+      "level": "blue",
+      "intervalMs": 10800000,
+      "createdAt": 1795657682763,
+      "updatedAt": 1795657682763,
+      "completed": false,
+      "pinned": false
+    },
+    {
+      "id": "sn_1795573205714_efbuy",
+      "text": "Lan vy tái khám 09/12, truyền máu, không truyền thải sắt . 10/12 ra viện. 11/12 vào nhận thuốc thải sắt",
+      "patient": "VƯƠNG NGỌC LAN VY (VS2610946944)",
+      "level": "blue",
+      "intervalMs": 10800000,
+      "createdAt": 1795573205714,
+      "updatedAt": 1795573205714,
+      "completed": false,
+      "pinned": false
+    },
+    {
+      "id": "sn_1794966461565_wonam",
+      "text": "Duy Khánh 3-4/12 thu. kích tối 28/11. 24/11 vv xn tiền phẫu. Đặt 2 sonde ngày 2/12",
+      "patient": "LÊ HỒ CẨM TIÊN (VS2610938472)",
+      "level": "blue",
+      "intervalMs": 10800000,
+      "createdAt": 1794966461565,
+      "updatedAt": 1794966461565,
+      "completed": false,
+      "pinned": false
+    },
+    {
+      "id": "sn_1794812527525_awcjm",
+      "text": "Anh Minh, Tuấn Vỹ dưới 9.6 truyền",
+      "patient": "NGUYỄN NGỌC TỐ NHƯ (VS2610919592)",
+      "level": "blue",
+      "intervalMs": 10800000,
+      "createdAt": 1794812527525,
+      "updatedAt": 1794812527525,
+      "completed": false,
+      "pinned": false
+    },
+    {
+      "id": "sn_1794550912876_mg5gx",
+      "text": "Ngọc Hiển thêm 1 vòng CADO",
+      "patient": "",
+      "level": "blue",
+      "intervalMs": 10800000,
+      "createdAt": 1794550912876,
+      "updatedAt": 1794550912876,
+      "completed": false,
+      "pinned": false
+    },
+    {
+      "id": "sn_1794456834546_97p5t",
+      "text": "THanh Thư 18/11 đặt sonde hickman' BBHC , 13/11 làm XN tiền phẫu",
+      "patient": "NGUYỄN NGỌC MINH MINH (VS2610924966)",
+      "level": "blue",
+      "intervalMs": 10800000,
+      "createdAt": 1794456834546,
+      "updatedAt": 1794456834546,
+      "completed": false,
+      "pinned": false
+    },
+    {
+      "id": "sn_1793865278075_4ldn8",
+      "text": "25/11 cô Hoa ra HN",
+      "patient": "HỒ VĂN KEN (VS2610773988)",
+      "level": "blue",
+      "intervalMs": 10800000,
+      "createdAt": 1793865278075,
+      "updatedAt": 1793865278075,
+      "completed": false,
+      "pinned": false
+    },
+    {
+      "id": "sn_1793681899421_gah5j",
+      "text": "TRẦN THỊ THÙY TRANG CTM 08:51 30/10/2026",
+      "patient": "",
+      "level": "blue",
+      "intervalMs": 10800000,
+      "createdAt": 1793681899421,
+      "updatedAt": 1793681899421,
+      "completed": false,
+      "pinned": false
+    }
+  ],
+  "deletedIds": {}
+}
