@@ -19,7 +19,7 @@ const DRUGS_CONFIG = [
     ]
   },
   {
-    name: 'Amikacin',
+    name: 'Amikaxin',
     packaging: '500mg/lọ',
     doses: [
       {
@@ -50,7 +50,7 @@ const DRUGS_CONFIG = [
         unit: 'UI',
         maxDose: null,
         freqText: 'x 2 lần/ngày',
-        note: 'hòa NaCl 0.9% truyền 60p cách 12h, có thể nâng lên 100.000 UI/kg'
+        note: 'hòa NaCl 0.9% truyền 60p cách 12h'
       }
     ]
   },
@@ -65,7 +65,7 @@ const DRUGS_CONFIG = [
         unit: 'mg',
         maxDose: null,
         freqText: 'x 1 lần duy nhất',
-        note: 'hòa NaCl 0.9% truyền 120p'
+        note: 'hòa NaCl 0.9% truyền 120 phút'
       },
       {
         label: 'liều duy trì',
@@ -73,7 +73,7 @@ const DRUGS_CONFIG = [
         unit: 'mg',
         maxDose: null,
         freqText: 'x 1 lần/ngày',
-        note: 'hòa NaCl 0.9% truyền 120p'
+        note: 'hòa NaCl 0.9% truyền 120 phút'
       }
     ]
   },
@@ -128,32 +128,16 @@ const DRUGS_CONFIG = [
     ]
   },
   {
-    name: 'Amphotericin B',
+    name: 'Amphot',
     packaging: '50mg/lọ',
     doses: [
       {
-        label: 'liều ban đầu',
-        dosePerKg: 0.5,
-        unit: 'mg',
-        maxDose: null,
-        freqText: 'x 1 lần/ngày',
-        note: 'hòa dung dịch glucose 5% đủ tỷ lệ 1mg:10ml, truyền tĩnh mạch 10h'
-      },
-      {
-        label: 'liều nâng dần',
-        dosePerKg: 0.75,
-        unit: 'mg',
-        maxDose: null,
-        freqText: 'x 1 lần/ngày',
-        note: 'hòa dung dịch glucose 5% đủ tỷ lệ 1mg:10ml, truyền tĩnh mạch 10h'
-      },
-      {
-        label: 'liều các lần sau',
+        label: 'liều',
         dosePerKg: 1,
         unit: 'mg',
         maxDose: null,
         freqText: 'x 1 lần/ngày',
-        note: 'hòa dung dịch glucose 5% đủ tỷ lệ 1mg:10ml, truyền tĩnh mạch 10h'
+        note: 'hòa dung dịch glucose 5% đủ 200ml truyền tĩnh mạch 50ml/h'
       }
     ]
   },
@@ -187,29 +171,20 @@ const SORTED_DRUGS = [...DRUGS_CONFIG].sort((a, b) =>
 );
 
 function formatNumber(num) {
-  if (!Number.isFinite(num)) return '0';
-  const rounded = Math.round((num + Number.EPSILON) * 100) / 100;
-  if (Math.abs(rounded) >= 1e15) return rounded.toString();
-
-  const parts = rounded.toString().split('.');
-  if (Math.abs(rounded) >= 10000) {
+  const rounded = Math.round(num * 100) / 100;
+  if (rounded >= 10000) {
+    const parts = rounded.toString().split('.');
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return parts.join(',');
   }
-  return parts.join(',');
-}
-
-function getDoseRate(doseItem, isM2) {
-  const rate = isM2
-    ? (doseItem.dosePerM2 ?? doseItem.dosePerKg)
-    : (doseItem.dosePerKg ?? doseItem.dosePerM2);
-  return typeof rate === 'number' && Number.isFinite(rate) ? rate : 0;
+  return rounded.toString();
 }
 
 function calculateDrugText(drug, metricValue) {
   const isM2 = drug.basis === 'm2';
 
   const segments = drug.doses.map((d, idx) => {
-    const doseRate = getDoseRate(d, isM2);
+    const doseRate = isM2 ? (d.dosePerM2 ?? d.dosePerKg) : d.dosePerKg;
     const rawDose = doseRate * metricValue;
     let finalDose = rawDose;
     let isMax = false;
@@ -234,10 +209,10 @@ function calculateDrugText(drug, metricValue) {
 
 function formatBaseDoseText(drug) {
   const isM2 = drug.basis === 'm2';
-  const perUnitText = isM2 ? 'm² da/lần' : 'kg/lần';
+  const perUnitText = isM2 ? 'm2 da/lần' : 'kg/lần';
 
   const segments = drug.doses.map((d, idx) => {
-    const doseRate = getDoseRate(d, isM2);
+    const doseRate = isM2 ? (d.dosePerM2 ?? d.dosePerKg) : d.dosePerKg;
     const labelText = idx === 0
       ? d.label
       : d.label.charAt(0).toUpperCase() + d.label.slice(1);
@@ -264,7 +239,7 @@ export default {
     <path d="M50 8 L57 25 L65 21 L61 44 L76 34 L73 45 L86 42 L82 53 L90 56 L71 72 L74 80 L52 78 L52 94 L48 94 L48 78 L26 80 L29 72 L10 56 L18 53 L14 42 L27 45 L24 34 L39 44 L35 21 L43 25 Z"/>
   </svg>`,
 
-  render(container, { copyText } = {}) {
+  render(container, { copyText }) {
     let selectedDrug = null;
 
     container.innerHTML = `
@@ -316,9 +291,8 @@ export default {
 
     function parsePositiveInput(inputEl) {
       const raw = inputEl.value.trim().replace(',', '.');
-      if (!raw) return null;
-      const val = Number(raw);
-      return Number.isFinite(val) && val > 0 ? val : null;
+      const val = parseFloat(raw);
+      return !isNaN(val) && val > 0 ? val : null;
     }
 
     function renderResult() {
@@ -334,12 +308,10 @@ export default {
       if (metricValue === null) {
         resultArea.innerHTML = `
           <div class="result-box river">
-            <div>Vui lòng nhập <strong>${isM2 ? 'mét vuông da (> 0 m²)' : 'cân nặng (> 0 kg)'}</strong> để tính liều cho <strong id="lt-missing-drug"></strong>.</div>
-            <div class="base-dose-note" id="lt-missing-base"></div>
+            <div>Vui lòng nhập <strong>${isM2 ? 'mét vuông da (&gt; 0 m²)' : 'cân nặng (&gt; 0 kg)'}</strong> để tính liều cho <strong>${selectedDrug.name}</strong>.</div>
+            <div class="base-dose-note">${baseDoseText}</div>
           </div>
         `;
-        resultArea.querySelector('#lt-missing-drug').textContent = selectedDrug.name;
-        resultArea.querySelector('#lt-missing-base').textContent = baseDoseText;
         return;
       }
 
@@ -359,18 +331,11 @@ export default {
       resultArea.querySelector('#lt-base-text').textContent = baseDoseText;
 
       const copyBtn = resultArea.querySelector('#lt-copy-btn');
-      let copyTimer = null;
       copyBtn.addEventListener('click', async () => {
-        if (typeof copyText !== 'function') return;
-        try {
-          const ok = await copyText(resultText);
-          if (ok) {
-            copyBtn.textContent = 'Đã copy ✓';
-            clearTimeout(copyTimer);
-            copyTimer = setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1200);
-          }
-        } catch (err) {
-          console.error('Copy failed:', err);
+        const ok = await copyText(resultText);
+        if (ok) {
+          copyBtn.textContent = 'Đã copy ✓';
+          setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1200);
         }
       });
     }
@@ -388,7 +353,7 @@ export default {
       filtered.forEach(drug => {
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'drug-chip' + (selectedDrug === drug ? ' active' : '');
+        btn.className = 'drug-chip' + (selectedDrug && selectedDrug.name === drug.name ? ' active' : '');
 
         const nameSpan = document.createElement('span');
         nameSpan.textContent = drug.name;
@@ -419,11 +384,7 @@ export default {
       weightInput.value = '';
       bsaInput.value = '';
       renderResult();
-      if (selectedDrug && selectedDrug.basis === 'm2') {
-        bsaInput.focus();
-      } else {
-        weightInput.focus();
-      }
+      weightInput.focus();
     });
 
     renderDrugGrid();
