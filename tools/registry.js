@@ -7,9 +7,11 @@
 import lieuThuoc from './lieu-thuoc.js';
 import buDienGiai from './bu-dien-giai.js';
 import tinhNgay from './tinh-ngay.js';
+import nhacViec from './nhac-viec.js';
 
 export const TOOLS = [
   lieuThuoc,
   buDienGiai,
-  tinhNgay
+  tinhNgay,
+  nhacViec
 ];
