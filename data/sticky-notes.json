@@ -1,7 +1,29 @@
 {
   "version": 2,
-  "updatedAt": 1795858182769,
+  "updatedAt": 1795858540198,
   "notes": [
+    {
+      "id": "sn_1795661520402_g03ms",
+      "text": "aCD4 nhập 7 lần ocnf cd34 nhập 1 lần kahscs",
+      "patient": "PHẠM QUỲNH ANH (VS2610953927)",
+      "level": "blue",
+      "intervalMs": 10800000,
+      "createdAt": 1795661520402,
+      "updatedAt": 1795661520402,
+      "completed": false,
+      "pinned": false
+    },
+    {
+      "id": "sn_1795661408454_vy1n2",
+      "text": "Trẻ van khó thở Tim đều mạch rõ Thở dều Phổi nghe ran ẩm Nghi tràn dịch màng phổi Dấu godet (+-) Thêm xét nghiệm",
+      "patient": "NGÔ QUANG LỘC (VS2610944915)",
+      "level": "blue",
+      "intervalMs": 10800000,
+      "createdAt": 1795661408454,
+      "updatedAt": 1795661408454,
+      "completed": false,
+      "pinned": false
+    },
     {
       "id": "sn_1795657682763_xqz6e",
       "text": "2khánh mi 3 thái hà",
@@ -14,6 +36,17 @@
       "pinned": false
     },
     {
+      "id": "sn_1795656456181_tkc4z",
+      "text": "10/12/2026 NGUYỄN NGỌC TỐ NHƯ  tái khám",
+      "patient": "NGUYỄN PHẠM PHÚC NHÂN (VS2610953959)",
+      "level": "blue",
+      "intervalMs": 10800000,
+      "createdAt": 1795656456181,
+      "updatedAt": 1795656456181,
+      "completed": false,
+      "pinned": false
+    },
+    {
       "id": "sn_1795573205714_efbuy",
       "text": "Lan vy tái khám 09/12, truyền máu, không truyền thải sắt . 10/12 ra viện. 11/12 vào nhận thuốc thải sắt",
       "patient": "VƯƠNG NGỌC LAN VY (VS2610946944)",
@@ -22,6 +55,17 @@
       "createdAt": 1795573205714,
       "updatedAt": 1795573205714,
       "completed": false,
+      "pinned": false
+    },
+    {
+      "id": "sn_1795406717380_06vh7",
+      "text": "khôi chờ vào viện làm plnm",
+      "patient": "",
+      "level": "green",
+      "intervalMs": 600000,
+      "createdAt": 1795406717380,
+      "updatedAt": 1795406717380,
+      "completed": true,
       "pinned": false
     },
     {
