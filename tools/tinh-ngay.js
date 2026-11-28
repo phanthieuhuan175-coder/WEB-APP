@@ -1,6 +1,6 @@
 // =========================================================================
 // MỤC 3: TÍNH NGÀY HẸN & ĐẾM KHOẢNG CÁCH NGÀY
-// Giữ nguyên 100% logic tính ngày và tự động lùi Thứ 7 / Chủ nhật về Thứ 6.
+// Giữ nguyên 100% logic tính ngày, tính số ngày cấp thuốc và tự động lùi Thứ 7 / Chủ nhật về Thứ 6.
 // =========================================================================
 
 function getTodayISO() {
@@ -18,18 +18,22 @@ function getVietnameseDay(date) {
   return days[date.getDay()];
 }
 
-function formatDate(date) {
+function formatShortDate(date) {
   const dd = String(date.getDate()).padStart(2, '0');
   const mm = String(date.getMonth() + 1).padStart(2, '0');
   const yyyy = date.getFullYear();
-  return `${getVietnameseDay(date)}, ngày ${dd}/${mm}/${yyyy}`;
+  return `${dd}/${mm}/${yyyy}`;
+}
+
+function formatDate(date) {
+  return `${getVietnameseDay(date)}, ngày ${formatShortDate(date)}`;
 }
 
 export default {
   id: 'tinh-ngay',
   name: 'Tính ngày',
   title: 'Tính Ngày Hẹn',
-  subtitle: 'Đếm số ngày & tính ngày tái khám tự tránh cuối tuần',
+  subtitle: 'Đếm số ngày, tính cấp thuốc & tái khám tự tránh cuối tuần',
   accent: 'river',
   icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <rect x="3" y="4" width="18" height="18" rx="3"/>
@@ -54,7 +58,7 @@ export default {
           </div>
 
           <div class="field">
-            <label for="tn-ngay-truoc">Ngày trước (tùy chọn — để đếm số ngày)</label>
+            <label for="tn-ngay-truoc">Ngày mốc 2 (tùy chọn — đếm ngày & tính cấp thuốc)</label>
             <input type="date" id="tn-ngay-truoc" />
           </div>
         </div>
@@ -110,7 +114,7 @@ export default {
         resultWrap.innerHTML = `
           <div class="card">
             <div class="result-box error">
-              Vui lòng nhập Ngày hiện tại cùng với Ngày trước hoặc cặp Đánh số.
+              Vui lòng nhập Ngày hiện tại cùng với Ngày mốc 2 hoặc cặp Đánh số.
             </div>
           </div>
         `;
@@ -121,18 +125,36 @@ export default {
       const blocks = [];
       const plainLines = [];
 
-      // 1. Đếm khoảng cách giữa Ngày trước và Ngày hiện tại
+      // 1. Đếm khoảng cách giữa Ngày mốc 2 và Ngày hiện tại & Tính số ngày cấp thuốc
       if (coTinhNgayTruoc) {
         const ngayTruoc = parseLocalDate(ngayTruocVal);
         const diffTime = ngayHienTai.getTime() - ngayTruoc.getTime();
         const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+        const diffCapThuoc = Math.round((ngayTruoc.getTime() - ngayHienTai.getTime()) / (1000 * 60 * 60 * 24));
+        const capThuocLabel = `Cấp thuốc từ ${formatShortDate(ngayHienTai)} đến ${formatShortDate(ngayTruoc)}:`;
+
+        let capThuocHtml = '';
+        let capThuocPlain = '';
+
+        if (diffCapThuoc >= 0) {
+          const soNgayCapThuoc = diffCapThuoc + 1; // Tính cả ngày hiện tại và ngày mốc 2
+          capThuocHtml = `<div style="margin-top:6px; padding-top:6px; border-top:1px dashed var(--autumn-border);">${capThuocLabel} <br><span class="date-highlight-warm">${soNgayCapThuoc} ngày</span></div>`;
+          capThuocPlain = `${capThuocLabel} ${soNgayCapThuoc} ngày`;
+        } else {
+          capThuocHtml = `<div style="margin-top:6px; padding-top:6px; border-top:1px dashed var(--autumn-border);">${capThuocLabel} <br><span style="color:#c62828; font-weight:600;">Ngày mốc 2 nhỏ hơn Ngày hiện tại</span></div>`;
+          capThuocPlain = `${capThuocLabel} Ngày mốc 2 nhỏ hơn Ngày hiện tại`;
+        }
+
         blocks.push(`
           <div class="date-stat">
-            <div>Từ Ngày trước đến hiện tại:</div>
+            <div>Từ Ngày mốc 2 đến hiện tại:</div>
             <div class="date-highlight-river">${diffDays} ngày</div>
+            ${capThuocHtml}
           </div>
         `);
-        plainLines.push(`Từ Ngày trước đến hiện tại: ${diffDays} ngày`);
+        plainLines.push(`Từ Ngày mốc 2 đến hiện tại: ${diffDays} ngày`);
+        plainLines.push(capThuocPlain);
       }
 
       // 2. Tính Ngày hẹn theo cặp Đánh số
