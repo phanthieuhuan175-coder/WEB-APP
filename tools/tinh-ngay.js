@@ -234,3 +234,16 @@ export default {
 
     btnReset.addEventListener('click', () => {
       inputNgayHienTai.value = getTodayISO();
+      inputNgayTruoc.value = '';
+      inputSoHienTai.value = '';
+      inputSoNgayHen.value = '';
+      resultWrap.style.display = 'none';
+    });
+
+    container.querySelectorAll('input').forEach(inp => {
+      inp.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') calculate();
+      });
+    });
+  }
+};
